@@ -25,7 +25,7 @@ const sessionKey = "BananaIsIncludedIntoSnacks"
 
 ```go
 func KeepAuthenticUserID(w http.ResponseWriter, r *http.Request, id string) error {
-    return sess.Set(w, r, authenticUserID, id)
+    return manager.Set(w, r, authenticUserID, id)
 }
 
 func FindAuthenticUserID(r *http.Request) (string, error) {
