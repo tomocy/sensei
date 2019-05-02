@@ -10,6 +10,26 @@ import (
 	"github.com/gorilla/sessions"
 )
 
+func TestSensei(t *testing.T) {
+	sensei, rec, req := prepare()
+	key, value := "snacks", "apple"
+	if err := sensei.Set(rec, req, key, value); err != nil {
+		fatalln(t, "unexpected error", err, "nil")
+	}
+
+	stored, err := sensei.Get(req, key)
+	if err != nil {
+		fatalln(t, "unepxected error", err, "nil")
+	}
+	stored, ok := stored.(string)
+	if !ok {
+		fatalln(t, "type of stored type", fmt.Sprintf("%T", stored), "string")
+	}
+	if stored != value {
+		errorln(t, "stored value", stored, value)
+	}
+}
+
 func TestSenseiFlash(t *testing.T) {
 	sensei, rec, req := prepare()
 	key, value := "snacks", "banana"

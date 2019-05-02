@@ -18,6 +18,26 @@ func New(store sessions.Store, key string) *Sensei {
 	}
 }
 
+func (s *Sensei) Set(w http.ResponseWriter, r *http.Request, key, value interface{}) error {
+	sess, err := s.Session(r)
+	if err != nil {
+		return err
+	}
+
+	sess.Values[key] = value
+
+	return sess.Save(r, w)
+}
+
+func (s *Sensei) Get(r *http.Request, key interface{}) (interface{}, error) {
+	sess, err := s.Session(r)
+	if err != nil {
+		return nil, err
+	}
+
+	return sess.Values[key], nil
+}
+
 func (s *Sensei) SetFlash(w http.ResponseWriter, r *http.Request, key string, value interface{}) error {
 	sess, err := s.Session(r)
 	if err != nil {
