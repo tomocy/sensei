@@ -1,6 +1,7 @@
 # sensei
 
 [![CircleCI](https://circleci.com/gh/tomocy/sensei.svg?style=svg)](https://circleci.com/gh/tomocy/sensei)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 utilities for [gorilla/sessions](https://github.com/gorilla/sessions)
 
