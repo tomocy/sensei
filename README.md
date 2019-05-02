@@ -1,5 +1,7 @@
 # sensei
 
+[![CircleCI](https://circleci.com/gh/tomocy/sensei.svg?style=svg)](https://circleci.com/gh/tomocy/sensei)
+
 utilities for [gorilla/sessions](https://github.com/gorilla/sessions)
 
 ## Installtion
