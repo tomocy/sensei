@@ -10,10 +10,8 @@ import (
 	"github.com/gorilla/sessions"
 )
 
-func TestSensei(t *testing.T) {
-	sensei := testSensei()
-	rec := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "http://sensei.com", nil)
+func TestSenseiFlash(t *testing.T) {
+	sensei, rec, req := prepare()
 	key, value := "snacks", "banana"
 	if err := sensei.SetFlash(rec, req, key, value); err != nil {
 		fatalln(t, "unexpected error", err, "nil")
@@ -42,6 +40,10 @@ func TestSensei(t *testing.T) {
 	if len(flashes) != 0 {
 		fatalln(t, "length of flashes", len(flashes), 1)
 	}
+}
+
+func prepare() (*Sensei, *httptest.ResponseRecorder, *http.Request) {
+	return testSensei(), httptest.NewRecorder(), httptest.NewRequest(http.MethodGet, "http://sensei.com", nil)
 }
 
 func testSensei() *Sensei {
